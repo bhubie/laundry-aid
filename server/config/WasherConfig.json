@@ -1,0 +1,12 @@
+{
+  "cycles": {
+    "casual": 60,
+    "delicates": 60,
+    "heavy duty": 60,
+    "normal": 60,
+    "normal/heavy": 60,
+    "bedding": 60,
+    "rinse & spin": 60,
+    "presoak": 60
+  }
+}
