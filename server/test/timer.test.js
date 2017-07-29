@@ -1,6 +1,6 @@
 var expect = require('expect');
 var sinon  = require('sinon');
-var {Timer} = require ('./timer');
+var {Timer} = require ('../src/utils/timer');
 var clock;
 
 describe('Timer', () => {
