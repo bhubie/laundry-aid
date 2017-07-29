@@ -55,9 +55,15 @@ describe('Timer', () => {
 
         var newRemainingTime = timer.getRemainingTimeFormatted();
         expect(newRemainingTime).toBe('00:59:54');
+    });
 
+    it('should return the date/time the timer was started at', () => {
        
-        //expect(remainingTime).toBe(0);
+        var timer = new Timer(3600000);
+        timer.start();
+        clock.tick(6000);
 
+        var startedAt = timer.getTimerStartDate();
+        expect(startedAt).toBe('December 31, 1969 6:00 PM');
     });
 });

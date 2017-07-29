@@ -59,6 +59,10 @@ class Timer {
     getRemainingTimeFormatted () {
         return moment.duration(this.time).format("hh:mm:ss", { trim: false });
     }
+
+    getTimerStartDate () {
+        return moment(this.startedAt).format('LLL');
+    }
 }
 
 module.exports = {Timer};  
