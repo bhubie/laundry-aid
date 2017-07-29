@@ -2,6 +2,8 @@
 //var events  = require('events');
 var EventEmitter = require('events').EventEmitter;
 var moment = require('moment');
+require("moment-duration-format");
+
 const second = 1000;
 
 class Timer {
@@ -15,7 +17,7 @@ class Timer {
     
     }
 
-    start() {
+    start () {
 
         if (this.interval) {
             return;
@@ -28,7 +30,7 @@ class Timer {
         console.log('Starting the Timer!');
     }
 
-    stop() {
+    stop () {
         console.log('Stoping the Timer!');
 
         if (this.interval) {
@@ -38,7 +40,7 @@ class Timer {
         }
     }
 
-    tickTimer() {
+    tickTimer () {
 
         this.time -= second;
 
@@ -50,10 +52,13 @@ class Timer {
         }
     }
 
-    getRemainingTimeInMillis() { 
+    getRemainingTimeInMillis () { 
         return this.time;
     }
 
+    getRemainingTimeFormatted () {
+        return moment.duration(this.time).format("hh:mm:ss", { trim: false });
+    }
 }
 
 module.exports = {Timer};  

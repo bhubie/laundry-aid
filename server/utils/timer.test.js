@@ -44,4 +44,20 @@ describe('Timer', () => {
         expect(remainingTime).toBe(0);
 
     });
+
+    it('should return remaining time formatted as hh:mm:ss', () => {
+       
+        var timer = new Timer(3600000);
+        var remainingTime = timer.getRemainingTimeFormatted();
+        expect(remainingTime).toBe('01:00:00');
+        timer.start();
+        clock.tick(6000);
+
+        var newRemainingTime = timer.getRemainingTimeFormatted();
+        expect(newRemainingTime).toBe('00:59:54');
+
+       
+        //expect(remainingTime).toBe(0);
+
+    });
 });
