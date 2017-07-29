@@ -2,16 +2,17 @@
 //var events  = require('events');
 var EventEmitter = require('events').EventEmitter;
 var moment = require('moment');
+const second = 1000;
 
 class Timer {
     constructor(time) {
         this.time = time;
         this.interval = undefined;
         this.startedAt = undefined;
-        this.seconds = 1000;
 
         //events.EventEmitter.call(this);
         //EventEmitter.call(this);
+    
     }
 
     start() {
@@ -21,7 +22,7 @@ class Timer {
         }
 
         this.startedAt = moment().valueOf();
-        this.interval = setInterval(this.tickTimer, this.second);
+        this.interval = setInterval(this.tickTimer.bind(this), second);
         //this.emit('start:timer');
 
         console.log('Starting the Timer!');
@@ -39,11 +40,11 @@ class Timer {
 
     tickTimer() {
 
-        this.time -= this.seconds;
+        this.time -= second;
 
         var formattedTime = 'todo';
         //this.emit('tick:timer', formattedTime);
-
+        
         if (this.time === 0) {
             this.stop();
         }
