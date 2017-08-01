@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const {Timer} = require('./utils/timer');
 
 const app = express();
 const port = process.env.PORT || 3000;

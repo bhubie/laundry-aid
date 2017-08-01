@@ -4,7 +4,7 @@
   "description": "Server for the laundry helper application",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node src/server.js",
     "test": "mocha **/*.test.js",
     "test-watch": "nodemon --exec 'npm test'"
   },
