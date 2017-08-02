@@ -12,7 +12,7 @@ app.listen(port, () => {
   console.log(`Started up at port ${port}`);
 });
 
-var washer = new Washer('delicate');
+var washer = new Washer('delicates');
 washer.start();
 
 module.exports = {app};
