@@ -1,4 +1,4 @@
-# laundry-aid
+# laundry-time
 
 ### Problem
 - Laundry at the new house we are renting is located in a shed and does not have a timer on the machine
