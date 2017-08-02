@@ -1,12 +1,12 @@
 {
-  "cycles": {
-    "casual": 60,
-    "delicates": 60,
-    "heavy duty": 60,
-    "normal": 60,
-    "normal/heavy": 60,
-    "bedding": 60,
-    "rinse & spin": 60,
-    "presoak": 60
-  }
+  "cycles": [
+    {"Name": "casual", "Time": 60},
+    {"Name": "delicates", "Time": 20},
+    {"Name": "heavy duty", "Time": 10},
+    {"Name": "normal", "Time": 50},
+    {"Name": "normal/heavy", "Time": 60},
+    {"Name": "bedding", "Time": 60},
+    {"Name": "rinse & spin", "Time": 10},
+    {"Name": "presoak", "Time": 10}
+  ]
 }
