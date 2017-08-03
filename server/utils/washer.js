@@ -10,6 +10,7 @@ class Washer extends Timer {
             super(t * 60000);
             this.cycle = c;
             this.cycleTime = t;
+            this.cycles = washerConfig.cycles;
         } catch (e) {
               throw `Cycle Time not found for cycle ${c}. Please try a differnt cycle`;
         }
@@ -22,6 +23,10 @@ class Washer extends Timer {
 
     getCycleTime () {
         return this.cycleTime;
+    }
+
+    getCycles () {
+        return this.cycles;
     }
 
 }
