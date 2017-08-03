@@ -11,14 +11,18 @@ const publicPath = path.join(__dirname, '../public');
 
 const app = express();
 var server = http.createServer(app);
-var io = socketIO(server);
+//var io = socketIO(server);
+io = socketIO.listen(server);
 
 app.use(express.static(publicPath));
-
-
 app.use(bodyParser.json());
 
-app.listen(port, () => {
+
+io.on('connection', (socket) => {
+    
+});
+
+server.listen(port, () => {
   console.log(`Started up at port ${port}`);
 });
 
