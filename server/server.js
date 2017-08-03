@@ -1,10 +1,20 @@
+const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
-const {Timer} = require('./utils/timer');
+const path = require('path');
+const socketIO = require('socket.io');
+
 const {Washer} = require('./utils/washer');
 
-const app = express();
 const port = process.env.PORT || 3000;
+const publicPath = path.join(__dirname, '../public');
+
+const app = express();
+var server = http.createServer(app);
+var io = socketIO(server);
+
+app.use(express.static(publicPath));
+
 
 app.use(bodyParser.json());
 
@@ -12,7 +22,7 @@ app.listen(port, () => {
   console.log(`Started up at port ${port}`);
 });
 
-var washer = new Washer('delicates');
-washer.start();
+//var washer = new Washer('delicates');
+//washer.start();
 
 module.exports = {app};
