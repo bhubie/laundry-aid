@@ -7,14 +7,19 @@ const socketIO = require('socket.io');
 const {Washer} = require('./utils/washer');
 
 const port = process.env.PORT || 3000;
-const publicPath = path.join(__dirname, '../public');
 
 const app = express();
 var server = http.createServer(app);
 //var io = socketIO(server);
 io = socketIO.listen(server);
 
-app.use(express.static(publicPath));
+
+app.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', '..', 'build', 'index.html'));
+});
+
 app.use(bodyParser.json());
 
 

@@ -4,11 +4,11 @@
   "description": "Server for the laundry helper application",
   "main": "index.js",
   "scripts": {
-    "start-server": "node src/server/server.js",
+    "start:server": "node src/server/server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "test-server": "mocha **/*.test.js",
+    "test:server": "mocha **/*.test.js",
     "eject": "react-scripts eject"
   },
   "author": "Brett Huber",
