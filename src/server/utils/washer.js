@@ -1,5 +1,5 @@
 const {Timer} = require('./timer');
-const washerConfig = require('../../../config/WasherConfig.json');
+const washerConfig = require('../../config/WasherConfig.json');
 
 class Washer extends Timer {
      constructor(cycle) {
