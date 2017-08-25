@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import './style.css';
+import io from 'socket.io-client';  
+const socket = io();
 
 export class CycleSelector extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          cycle: this.props.options[0].Name
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.populateOptions = this.populateOptions.bind(this);
+        this.handleStartCycle = this.handleStartCycle.bind(this);
+      }
 
     populateOptions(options) {
         return options.map((option, index) => (
@@ -9,17 +21,26 @@ export class CycleSelector extends Component {
         ));
     }
 
+    handleStartCycle(type, cycle) {
+        socket.emit('startTimer', {type: type, cycle: cycle});
+    }
+
+    handleChange(e) {
+        this.setState({ cycle: e.target.value });
+      }
 
     render() {
         return (
         <div className="Selector">
             <form id="formStartTimer">
                 <label>Cycle: 
-                    <select name="cycleSelect"> 
+                    <select name="cycleSelect" onChange={this.handleChange}> 
                         {this.populateOptions(this.props.options)}
                     </select>
                     </label>
-                    <button>Start</button>
+                    <button onClick={ () => this.handleStartCycle(this.props.type, this.state.cycle)}>
+                        Start
+                    </button>
                 </form>
         </div>
         );
