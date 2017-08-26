@@ -10,7 +10,6 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 var server = http.createServer(app);
-//var io = socketIO(server);
 const io = socketIO.listen(server);
 
 
@@ -33,9 +32,29 @@ io.on('connection', (socket) => {
             type: 'Washer'
         });
       }
-      //callback();
   });
 });
+
+/*
+const washer = new Washer();
+washer.on('tick:timer', (time) => {  
+  emitTimerTick('Washer', time);
+});
+
+washer.on('stop:timer', () => {  
+  emitTimerStop('Washer');
+});
+
+function emitTimerStop () {
+  io.emit('stopTimer', { type: type });
+};
+
+function emitTimerTick (type, time) {
+  io.emit('tickTimer', { 
+    type: type,
+    time: time });
+}
+*/
 
 server.listen(port, () => {
   console.log(`Started up at port ${port}`);

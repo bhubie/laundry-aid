@@ -9,22 +9,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      washerStarted: false
-    };
-
-    socket.on('timerStarted', (payload) => {
-        console.log('timer started event!'); 
-        this.setTimerStarted(payload);
-    });
   }
-
-  setTimerStarted(payload) {
-    if (payload.type === 'Washer') {
-      this.setState({washerStarted: true});
-    }
-  };
 
   render() {
 
@@ -33,10 +18,10 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Welcome to Laundry Time</h2>
         </div>
 
-        <Washer started= {this.state.washerStarted} />
+        <Washer started= {this.state.washerStarted} socket = {socket} />
       </div>
     );
   }

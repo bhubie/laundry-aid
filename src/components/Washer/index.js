@@ -6,25 +6,37 @@ import './style.css';
 
 export class Washer extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.state = {
             type: 'Washer',
             options: WasherCycles,
-            started: this.props.started
+            started: false
         }
     }
+
+    componentDidMount() {
+        const { socket } = this.props;
+
+        socket.on('timerStarted', (payload) => {
+            console.log('timer started event!'); 
+            this.setState({started: true});
+        });
+       
+    }
     render() {
-        if (this.props.started === true) {
+        if (this.state.started === true) {
             return (
                 <div className="Washer">
-                    <Timer />
+                    <Timer socket={this.props.socket} />
                 </div>
             );
         } else {
             return (
                 <div className="Washer">
-                    <CycleSelector type={this.state.type} options={this.state.options.cycles} />
+                    <CycleSelector type={this.state.type} 
+                        options={this.state.options.cycles}
+                        socket={this.props.socket} />
                 </div>
             );
         }

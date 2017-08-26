@@ -27,7 +27,7 @@ export class CycleSelector extends Component {
 
     handleChange(e) {
         this.setState({ cycle: e.target.value });
-      }
+    }
 
     render() {
         return (
