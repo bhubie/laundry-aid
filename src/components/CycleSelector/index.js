@@ -32,16 +32,14 @@ export class CycleSelector extends Component {
     render() {
         return (
         <div className="Selector">
-            <form id="formStartTimer">
-                <label>Cycle: 
-                    <select name="cycleSelect" onChange={this.handleChange}> 
-                        {this.populateOptions(this.props.options)}
-                    </select>
-                    </label>
-                    <button onClick={ () => this.handleStartCycle(this.props.type, this.state.cycle)}>
-                        Start
-                    </button>
-                </form>
+            <label>Cycle: 
+                <select name="cycleSelect" onChange={this.handleChange}> 
+                    {this.populateOptions(this.props.options)}
+                </select>
+            </label>
+            <button onClick={ () => this.handleStartCycle(this.props.type, this.state.cycle)}>
+                Start
+            </button>
         </div>
         );
     }

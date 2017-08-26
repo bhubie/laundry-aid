@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 var server = http.createServer(app);
 //var io = socketIO(server);
-io = socketIO.listen(server);
+const io = socketIO.listen(server);
 
 
 app.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
@@ -24,14 +24,23 @@ app.use(bodyParser.json());
 
 
 io.on('connection', (socket) => {
-    
+    console.log('user Connected')
+
+    socket.on('startTimer', (message) => {
+      
+      if(message.type === 'Washer') {
+        io.emit('timerStarted',  {
+            type: 'Washer'
+        });
+      }
+      //callback();
+  });
 });
 
 server.listen(port, () => {
   console.log(`Started up at port ${port}`);
 });
 
-//var washer = new Washer('delicates');
-//washer.start();
+
 
 module.exports = {app};
