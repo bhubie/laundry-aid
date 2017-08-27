@@ -5,6 +5,7 @@ const path = require('path');
 const socketIO = require('socket.io');
 
 const {Washer} = require('./utils/washer');
+const washer = new Washer();
 
 const port = process.env.PORT || 3000;
 
@@ -28,15 +29,12 @@ io.on('connection', (socket) => {
     socket.on('startTimer', (message) => {
       
       if(message.type === 'Washer') {
-        io.emit('timerStarted',  {
-            type: 'Washer'
-        });
+        washer.setCycle(message.cycle);
+        washer.start();
       }
   });
 });
 
-/*
-const washer = new Washer();
 washer.on('tick:timer', (time) => {  
   emitTimerTick('Washer', time);
 });
@@ -54,7 +52,7 @@ function emitTimerTick (type, time) {
     type: type,
     time: time });
 }
-*/
+
 
 server.listen(port, () => {
   console.log(`Started up at port ${port}`);

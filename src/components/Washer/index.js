@@ -11,7 +11,8 @@ export class Washer extends React.Component {
         this.state = {
             type: 'Washer',
             options: WasherCycles,
-            started: false
+            started: false,
+            timeRemaining: 'Not Started'
         }
     }
 
@@ -22,13 +23,20 @@ export class Washer extends React.Component {
             console.log('timer started event!'); 
             this.setState({started: true});
         });
+
+        socket.on('tickTimer', (payload) => {
+            if (payload.type === 'Washer') {
+                this.setState({ timeRemaining: payload.time });
+            }
+        });
        
     }
     render() {
         if (this.state.started === true) {
             return (
                 <div className="Washer">
-                    <Timer socket={this.props.socket} />
+                    <Timer socket={ this.props.socket }
+                        timeRemaining={ this.state.timeRemaining } />
                 </div>
             );
         } else {

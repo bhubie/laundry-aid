@@ -12,8 +12,6 @@ class App extends Component {
   }
 
   render() {
-
-    console.log(this.state.washerStarted)
     return (
       <div className="App">
         <div className="App-header">
@@ -21,7 +19,7 @@ class App extends Component {
           <h2>Welcome to Laundry Time</h2>
         </div>
 
-        <Washer started= {this.state.washerStarted} socket = {socket} />
+        <Washer socket = {socket} />
       </div>
     );
   }

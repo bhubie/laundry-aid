@@ -47,7 +47,7 @@ class Timer extends EventEmitter {
 
         this.time -= second;
 
-        var formattedTime = 'todo';
+        var formattedTime = this.getRemainingTimeFormatted();
         this.emit('tick:timer', formattedTime);
         
         if (this.time === 0) {
