@@ -1,19 +1,20 @@
 var expect = require('expect');
 var sinon  = require('sinon');
-var {Timer} = require ('../server/utils/timer');
+const { Timer } = require('./timer');
 var clock;
 
 describe('Timer', () => {
-    before(() => {
+    beforeAll(() => {
         clock = sinon.useFakeTimers();
     });
 
-    after(() => {
+    afterAll(() => {
         clock.restore();
     });
 
     it('should return remaining time of 6000 when Timer.Start is not called', () => {
-        var timer = new Timer(6000);
+        var timer = new Timer();
+        timer.setTime(6000);
 
         var remainingTime = timer.getRemainingTimeInMillis();
 
@@ -21,8 +22,8 @@ describe('Timer', () => {
     });
 
     it('should return remaining time of 5000 when a second has passed', () => {
-        var timer = new Timer(6000);
-        
+        var timer = new Timer();
+        timer.setTime(6000);
         timer.start();
         clock.tick(1000);
 
@@ -34,7 +35,8 @@ describe('Timer', () => {
 
     it('should call stop when timer reaches zero', () => {
        
-        var timer = new Timer(6000);
+        var timer = new Timer();
+        timer.setTime(6000);
         var spy = expect.spyOn(timer, 'stop')
         timer.start();
         clock.tick(6000);
@@ -47,7 +49,8 @@ describe('Timer', () => {
 
     it('should return remaining time formatted as hh:mm:ss', () => {
        
-        var timer = new Timer(3600000);
+        var timer = new Timer();
+        timer.setTime(3600000);
         var remainingTime = timer.getRemainingTimeFormatted();
         expect(remainingTime).toBe('01:00:00');
         timer.start();
@@ -59,7 +62,8 @@ describe('Timer', () => {
 
     it('should return the date/time the timer was started at', () => {
        
-        var timer = new Timer(3600000);
+        var timer = new Timer();
+        timer.setTime(3600000);
         timer.start();
         clock.tick(6000);
 

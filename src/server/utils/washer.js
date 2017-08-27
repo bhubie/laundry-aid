@@ -2,19 +2,22 @@ const {Timer} = require('./timer');
 const washerConfig = require('../../config/WasherConfig.json');
 
 class Washer extends Timer {
-     constructor(cycle) {
-        var c = cycle;
+     constructor () {
+        super();
+        this.cycles = washerConfig.cycles;
+        this.cycle = undefined;
+        this.cycleTime = undefined;
+    }
 
+    setCycle (cycle) {
+        this.cycle = cycle;
         try {
-            var t = washerConfig.cycles.find(x => x.Name === c).Time;
-            super(t * 60000);
-            this.cycle = c;
+            var t = washerConfig.cycles.find(x => x.Name === cycle).Time;
             this.cycleTime = t;
-            this.cycles = washerConfig.cycles;
+            this.setTime(t * 60000);
         } catch (e) {
-              throw `Cycle Time not found for cycle ${c}. Please try a differnt cycle`;
+            throw `Cycle Time not found for cycle ${cycle}. Please try a differnt cycle`;
         }
-       
     }
 
     getCycle () {
@@ -30,7 +33,6 @@ class Washer extends Timer {
     }
 
 }
-
 
 module.exports = {Washer};  
 

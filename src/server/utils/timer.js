@@ -5,17 +5,25 @@ require("moment-duration-format");
 const second = 1000;
 
 class Timer extends EventEmitter {
-    constructor(time) {
+    constructor () {
         super();
-        this.time = time;
+        this.time = undefined;
         this.interval = undefined;
         this.startedAt = undefined;
+    }
+
+    setTime (time) {
+        this.time = time;
     }
 
     start () {
 
         if (this.interval) {
             return;
+        }
+
+        if (this.time === undefined) {
+            throw 'Timer has not been set';
         }
 
         this.startedAt = moment().valueOf();
