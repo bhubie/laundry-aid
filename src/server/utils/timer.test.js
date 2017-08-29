@@ -70,4 +70,22 @@ describe('Timer', () => {
         var startedAt = timer.getTimerStartDate();
         expect(startedAt).toBe('December 31, 1969 6:00 PM');
     });
+
+    it('isStarted should return true if the timer has been started', () => {
+        
+        var timer = new Timer();
+        timer.setTime(1000);
+        timer.start();
+
+        var isStarted = timer.isStarted();
+        expect(isStarted).toBe(true);
+     });
+
+     it('isStarted should return false if the timer has not been started', () => {
+        
+        var timer = new Timer();
+        timer.setTime(1000);
+        var isStarted = timer.isStarted();
+        expect(isStarted).toBe(false);
+     });
 });

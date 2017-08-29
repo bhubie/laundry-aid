@@ -24,22 +24,25 @@ app.use(bodyParser.json());
 
 
 io.on('connection', (socket) => {
-    console.log('user Connected')
+    
+  if (washer.isStarted()) {
+    emitTimerTick('Washer', washer.getRemainingTimeFormatted());
+  };
 
-    socket.on('startTimer', (message) => {
-      
-      if(message.type === 'Washer') {
-        washer.setCycle(message.cycle);
-        washer.start();
-      }
-    });
+  socket.on('startTimer', (message) => {
+    
+    if(message.type === 'Washer') {
+      washer.setCycle(message.cycle);
+      washer.start();
+    }
+  });
 
-    socket.on('stopTimer', (message) => {
-      
-      if(message.type === 'Washer') {
-        washer.stop();
-      }
-    });
+  socket.on('stopTimer', (message) => {
+    
+    if(message.type === 'Washer') {
+      washer.stop();
+    }
+  });
 });
 
 washer.on('tick:timer', (time) => {  

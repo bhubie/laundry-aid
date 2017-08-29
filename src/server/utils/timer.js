@@ -66,6 +66,14 @@ class Timer extends EventEmitter {
     getTimerStartDate () {
         return moment(this.startedAt).format('LLL');
     }
+
+    isStarted () {
+        if (this.interval != undefined) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 module.exports = {Timer};  
