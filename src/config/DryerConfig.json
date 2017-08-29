@@ -1,0 +1,11 @@
+{
+  "cycles": [
+    {"Name": "High Heat - More Dry", "Time": 60},
+    {"Name": "High Heat - Energy Preferred", "Time": 20},
+    {"Name": "High Heat - Less Dry", "Time": 10},
+    {"Name": "Low Heat - More Dry", "Time": 50},
+    {"Name": "Low Heat - Energy Preferred", "Time": 60},
+    {"Name": "Low Heat - Less Dry", "Time": 60},
+    {"Name": "Timed", "Time": -1}
+  ]
+}
