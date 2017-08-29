@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Washer } from '../Washer/index.js';
+import { Unit } from '../Unit/index.js';
 import logo from './washing-machine.svg';
 import './style.css';
 import io from 'socket.io-client';  
@@ -19,7 +19,8 @@ class App extends Component {
           <h2>Welcome to Laundry Time</h2>
         </div>
 
-        <Washer socket = {socket} />
+        <Unit type='Washer'
+          socket = {socket} />
       </div>
     );
   }

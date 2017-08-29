@@ -4,12 +4,12 @@ import { Timer } from '../Timer/index.js';
 import WasherCycles from '../../config/WasherConfig.json';
 import './style.css';
 
-export class Washer extends React.Component {
+export class Unit extends React.Component {
 
     constructor(props, context) {
         super(props, context);
         this.state = {
-            type: 'Washer',
+            type: this.props.type,
             options: WasherCycles,
             started: false,
             timeRemaining: 'Not Started'
@@ -47,25 +47,33 @@ export class Washer extends React.Component {
 
     handleStopTimer () {
         const { socket } = this.props;
-        socket.emit('stopTimer', {type: 'Washer'});
+        socket.emit('stopTimer', {type: this.state.type });
     }
 
     render() {
+        const unitLabel = (
+            <h2>{ this.state.type }</h2>
+        );
+
+        let unitBody = null;
         if (this.state.started === true) {
-            return (
-                <div className="Washer">
-                    <Timer timeRemaining={ this.state.timeRemaining } />
-                    <button onClick={this.handleStopTimer}>Stop Timer</button>
+            unitBody =  <div className="UnitBody">
+                <Timer timeRemaining={ this.state.timeRemaining } />
+                <button onClick={this.handleStopTimer}>Stop Timer</button>
                 </div>
-            );
         } else {
-            return (
-                <div className="Washer">
-                    <CycleSelector type={this.state.type} 
-                        options={this.state.options.cycles}
-                        socket={this.props.socket} />
+            unitBody = <div className="UnitBody">
+                <CycleSelector type={this.state.type} 
+                    options={this.state.options.cycles}
+                    socket={this.props.socket} />
                 </div>
-            );
         }
+
+       return (
+            <div className="Unit">
+                {unitLabel}
+                {unitBody}
+            </div>
+       );
     }
 }
