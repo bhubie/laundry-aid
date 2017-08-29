@@ -14,6 +14,8 @@ export class Washer extends React.Component {
             started: false,
             timeRemaining: 'Not Started'
         }
+
+        this.handleStopTimer =  this.handleStopTimer.bind(this);
     }
 
     componentDidMount() {
@@ -26,17 +28,34 @@ export class Washer extends React.Component {
 
         socket.on('tickTimer', (payload) => {
             if (payload.type === 'Washer') {
-                this.setState({ timeRemaining: payload.time });
+                this.setState({ 
+                    timeRemaining: payload.time,
+                    started: true
+                });
             }
         });
-       
+
+        socket.on('stopTimer', (payload) => {
+            if (payload.type === 'Washer') {
+                this.setState({ 
+                    timeRemaining: 'Not Started',
+                    started: false
+                });
+            }
+        });
     }
+
+    handleStopTimer () {
+        const { socket } = this.props;
+        socket.emit('stopTimer', {type: 'Washer'});
+    }
+
     render() {
         if (this.state.started === true) {
             return (
                 <div className="Washer">
-                    <Timer socket={ this.props.socket }
-                        timeRemaining={ this.state.timeRemaining } />
+                    <Timer timeRemaining={ this.state.timeRemaining } />
+                    <button onClick={this.handleStopTimer}>Stop Timer</button>
                 </div>
             );
         } else {

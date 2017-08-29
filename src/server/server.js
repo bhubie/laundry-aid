@@ -32,7 +32,14 @@ io.on('connection', (socket) => {
         washer.setCycle(message.cycle);
         washer.start();
       }
-  });
+    });
+
+    socket.on('stopTimer', (message) => {
+      
+      if(message.type === 'Washer') {
+        washer.stop();
+      }
+    });
 });
 
 washer.on('tick:timer', (time) => {  
@@ -43,7 +50,7 @@ washer.on('stop:timer', () => {
   emitTimerStop('Washer');
 });
 
-function emitTimerStop () {
+function emitTimerStop (type) {
   io.emit('stopTimer', { type: type });
 };
 
