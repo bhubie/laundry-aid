@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Washer } from '../Washer/index.js';
-import logo from './logo.svg';
+import logo from './washing-machine.svg';
 import './style.css';
 import io from 'socket.io-client';  
 const socket = io();
