@@ -21,6 +21,10 @@ class App extends Component {
 
         <Unit type='Washer'
           socket = {socket} />
+        
+        <Unit type='Dryer'
+          socket = {socket} />
+
       </div>
     );
   }

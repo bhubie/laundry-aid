@@ -2,17 +2,30 @@ import React from 'react';
 import { CycleSelector } from '../CycleSelector/index.js';
 import { Timer } from '../Timer/index.js';
 import WasherCycles from '../../config/WasherConfig.json';
+import DryerCycles from '../../config/DryerConfig.json';
 import './style.css';
 
 export class Unit extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {
-            type: this.props.type,
-            options: WasherCycles,
-            started: false,
-            timeRemaining: 'Not Started'
+    
+        if (this.props.type === 'Washer') {
+            this.state = {
+                type: this.props.type,
+                started: false,
+                timeRemaining: 'Not Started',
+                options: WasherCycles
+            }
+        }
+
+        if (this.props.type === 'Dryer') {
+            this.state = {
+                type: this.props.type,
+                started: false,
+                timeRemaining: 'Not Started',
+                options: DryerCycles
+            }
         }
 
         this.handleStopTimer =  this.handleStopTimer.bind(this);
@@ -27,7 +40,7 @@ export class Unit extends React.Component {
         });
 
         socket.on('tickTimer', (payload) => {
-            if (payload.type === 'Washer') {
+            if (payload.type === this.state.type) {
                 this.setState({ 
                     timeRemaining: payload.time,
                     started: true
@@ -36,7 +49,7 @@ export class Unit extends React.Component {
         });
 
         socket.on('stopTimer', (payload) => {
-            if (payload.type === 'Washer') {
+            if (payload.type === this.state.type) {
                 this.setState({ 
                     timeRemaining: 'Not Started',
                     started: false
