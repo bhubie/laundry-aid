@@ -8,3 +8,13 @@
 
 ### Why not just set a timer?
 - because there is no fun in that :)
+
+### Built Using:
+- Node
+- React
+- Express
+- Socket.io
+
+### TODO:
+- Alexa skill integration to start timer via spoken commands
+- CSS styling for web page
