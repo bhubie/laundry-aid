@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Unit } from '../Unit/index.js';
+import { Unit } from '../Unit/Unit.js';
 import logo from './washing-machine.svg';
-import './style.css';
+import './App.css';
 import io from 'socket.io-client';  
 const socket = io();
 

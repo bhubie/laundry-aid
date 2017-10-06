@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style.css';
+import './CycleSelector.css';
 import io from 'socket.io-client';  
 const socket = io();
 

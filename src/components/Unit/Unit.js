@@ -1,9 +1,9 @@
 import React from 'react';
-import { CycleSelector } from '../CycleSelector/index.js';
-import { Timer } from '../Timer/index.js';
+import { CycleSelector } from '../CycleSelector/CycleSelector.js';
+import { Timer } from '../Timer/Timer.js';
 import WasherCycles from '../../config/WasherConfig.json';
 import DryerCycles from '../../config/DryerConfig.json';
-import './style.css';
+import './Unit.css';
 
 export class Unit extends React.Component {
 
